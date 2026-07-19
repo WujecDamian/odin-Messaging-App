@@ -1,18 +1,27 @@
 import { prisma } from "../../lib/prisma.js";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import { configDotenv } from "dotenv";
 
 const logInUser = async (req, res) => {
   const { username, password } = req.body;
   const user = await prisma.user.findUnique({ where: { username } });
-  if (user) {
-    const passwordMatch = bcrypt.compare(password, user.password);
-    if (passwordMatch) {
-    }
+  if (!user) {
+    res.json({ errorMessage: "There is no user matching given username" });
   }
-  /* check if username exists in db 
-    match passwords with bcrypt.compare(givenpassword, dbpassword)
-    if correct send back jwt token 
-    ? something like that
-*/
+  const passwordMatch = await bcrypt.compare(password, user.password);
+  if (!passwordMatch) {
+    res.json({ errorMessage: "Password incorrect" });
+  }
+  const token = jwt.sign(
+    {
+      userId: user.id,
+    },
+    process.env.JWT_SECRET,
+    { expiresIn: "48h" },
+  );
+
+  res.json({ user, token });
 };
 
 export { logInUser };
