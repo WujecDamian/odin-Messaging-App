@@ -13,7 +13,7 @@ const getProfileById = async (req, res) => {
 };
 
 const editProfile = async (req, res) => {
-  const { bannerPhotoUrl, profilePhotoUrl };
+  const { bannerPhotoUrl, profilePhotoUrl } = req.body;
   const user = req.user;
   const userId = req.params.userId;
 
