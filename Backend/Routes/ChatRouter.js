@@ -7,6 +7,4 @@ import verifyToken from "../Middleware/authMiddleware.js";
 
 router.get("/", verifyToken, ChatController.getAllUserChats);
 
-router.get("/:profileId", ChatController.getProfileById);
-
 export default router;
