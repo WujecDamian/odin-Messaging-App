@@ -1,7 +1,9 @@
 import express from "express";
+import cors from "cors";
 const app = express();
 const port = 3000;
 app.use(express.json());
+app.use(cors());
 
 import loginRouter from "./Routes/LoginRouter.js";
 import registerRouter from "./Routes/RegisterRouter.js";
