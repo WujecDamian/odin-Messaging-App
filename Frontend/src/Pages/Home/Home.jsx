@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import LevelBox from "../../components/game/levelbox/LevelBox";
 import styles from "./Home.module.css";
 
 function Home() {
-  const [levels, setLevels] = useState([]);
+  /*   const [levels, setLevels] = useState([]);
 
   useEffect(() => {
     const fetchLevels = async () => {
@@ -22,14 +21,14 @@ function Home() {
       }
     };
     fetchLevels();
-  }, []);
+  }, []); */
   return (
     <>
-      <section className={styles.levels}>
-        {/* here's just hard coded one */}
-        {levels.map((level) => (
+      <section className={styles.home}>
+        <h1>Hi there</h1>
+        {/*    {levels.map((level) => (
           <LevelBox level={level}></LevelBox>
-        ))}
+        ))} */}
       </section>
     </>
   );
