@@ -37,4 +37,18 @@ const getChatByUserIdAndRecipientId = async (req, res) => {
   res.json({ messages });
 };
 
-export { getAllUserChats, getChatByUserIdAndRecipientId };
+const createMessage = async (req, res) => {
+  const userId = Number(req.user.userId);
+  const recipientId = Number(req.params.recipientId);
+  const { message } = req.body.bodyData;
+
+  await prisma.messages.create({
+    data: {
+      content: message,
+      receiverId: recipientId,
+      senderId: userId,
+    },
+  });
+};
+
+export { getAllUserChats, getChatByUserIdAndRecipientId, createMessage };

@@ -11,5 +11,6 @@ router.get(
   verifyToken,
   ChatController.getChatByUserIdAndRecipientId,
 );
+router.post("/chat/:recipientId", verifyToken, ChatController.createMessage);
 
 export default router;

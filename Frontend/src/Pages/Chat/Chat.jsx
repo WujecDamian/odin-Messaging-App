@@ -42,6 +42,39 @@ function Chat() {
     fetchChat();
   }, []);
   console.log(chat);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+    const message = formData.get("message");
+    console.log(message);
+    const bodyData = {
+      message,
+    };
+    try {
+      const response = await fetch(
+        `http://localhost:3000/api/chats/chat/${params.recipientId}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `bearer ${token}`,
+          },
+          body: JSON.stringify({ bodyData }),
+        },
+      );
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Something went wrong");
+      }
+    } catch (error) {
+      setError(error.message || error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <>
@@ -50,6 +83,14 @@ function Chat() {
         <section className={styles.chat__wrapper}></section>
         {loading && <span>loading....</span>}
         {error && <span>{error?.message ? error.message : String(error)}</span>}
+        <section className={styles.newMessage__form}>
+          <form onSubmit={handleSubmit}>
+            <input type="text" name="message" id="message" />
+            <input type="submit" value=">" />
+            {loading && <span>Loading...</span>}
+            {error?.message ? error.message : String(error)}
+          </form>
+        </section>
       </section>
     </>
   );
