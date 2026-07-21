@@ -51,7 +51,7 @@ const Register = () => {
       </label>
       <input type="text" name="displayName" id="displayName" />
       <label htmlFor="username">Username (private to you)</label>
-      <input type="text" name="username" id="username" />{" "}
+      <input type="text" name="username" id="username" />
       <label htmlFor="password">Password</label>
       <input type="password" name="password" id="password" />
       <input type="submit" value="Register" />
