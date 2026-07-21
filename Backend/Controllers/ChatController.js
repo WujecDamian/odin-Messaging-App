@@ -31,7 +31,7 @@ const getChatByUserIdAndRecipientId = async (req, res) => {
       ],
     },
     orderBy: {
-      createdAt: "desc",
+      createdAt: "asc",
     },
   });
   res.json({ messages });

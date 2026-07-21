@@ -1,0 +1,23 @@
+.message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 500px;
+  margin: 0.5rem auto;
+}
+.message__content__sender {
+  padding: 0.5rem 1rem;
+
+  margin-left: auto;
+  text-align: left;
+  border: 1.5px solid rgb(255, 255, 255);
+  background-color: rgb(16, 143, 206);
+  color: white;
+  border-radius: 10rem;
+  border-bottom-right-radius: 0;
+}
+.message__content__recipient {
+  margin-right: auto;
+  text-align: right;
+  border: 1px solid white;
+}

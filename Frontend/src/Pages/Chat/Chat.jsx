@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useCookies } from "react-cookie";
 import { useParams, Link } from "react-router";
 import styles from "./Chat.module.css";
+import Message from "../../Components/Message/Message";
 
 function Chat() {
   const [cookies] = useCookies(["user", "token"]);
@@ -11,6 +12,7 @@ function Chat() {
   const [chat, setChat] = useState([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
   let params = useParams();
 
   useEffect(() => {
@@ -44,13 +46,13 @@ function Chat() {
   console.log(chat);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const form = e.target;
-    const formData = new FormData(form);
-    const message = formData.get("message");
+
     console.log(message);
     const bodyData = {
       message,
     };
+    setMessage("");
+
     try {
       const response = await fetch(
         `http://localhost:3000/api/chats/chat/${params.recipientId}`,
@@ -85,11 +87,24 @@ function Chat() {
         {error && <span>{error?.message ? error.message : String(error)}</span>}
         <section className={styles.newMessage__form}>
           <form onSubmit={handleSubmit}>
-            <input type="text" name="message" id="message" />
+            <input
+              type="text"
+              name="message"
+              id="message"
+              value={message}
+              onChange={(e) => {
+                setMessage(e.target.value);
+              }}
+            />
             <input type="submit" value=">" />
             {loading && <span>Loading...</span>}
             {error?.message ? error.message : String(error)}
           </form>
+        </section>
+        <section className={styles.messages}>
+          {chat.map((message) => (
+            <Message userId={user.userId} message={message}></Message>
+          ))}
         </section>
       </section>
     </>
