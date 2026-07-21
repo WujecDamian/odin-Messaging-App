@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { useParams } from "react-router";
 import styles from "./Group.module.css";
-import GroupBox from "../../Components/GroupBox/Groupbox";
+import UserBox from "../../Components/UserBox/Userbox";
 
 function Group() {
   const [cookies] = useCookies(["user", "token"]);
@@ -77,7 +77,7 @@ function Group() {
 
         <section className={styles.group}>
           {group?.users?.map((user) => (
-            <div>{user.displayName}</div>
+            <UserBox user={user}></UserBox>
           ))}
         </section>
       </section>
