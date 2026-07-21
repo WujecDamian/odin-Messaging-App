@@ -1,0 +1,45 @@
+.group {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid;
+  gap: 5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile__wrapper {
+  position: relative;
+  display: block;
+  height: 300px;
+  width: 100%;
+  border: 1px solid white;
+}
+.banner__picture {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  left: 0;
+}
+.profile__picture {
+  position: absolute;
+  height: 75%;
+  left: 20px;
+  bottom: 15px;
+  border-radius: 50%;
+}
+
+.profile__name {
+  position: absolute;
+  bottom: 15%;
+  left: 23%;
+  font-size: 3rem;
+}
+
+.profile__messageBtn {
+  position: absolute;
+  bottom: 15px;
+  right: 20px;
+  font-size: 2rem;
+  cursor: pointer;
+}
