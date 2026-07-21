@@ -1,34 +1,38 @@
 import { useEffect, useState } from "react";
 import styles from "./Home.module.css";
+import GroupBox from "../../Components/GroupBox/Groupbox";
 
 function Home() {
-  /*   const [levels, setLevels] = useState([]);
+  const [groups, setGroups] = useState([]);
 
   useEffect(() => {
-    const fetchLevels = async () => {
+    const fetchGroups = async () => {
       try {
-        const response = await fetch(
-          "http://localhost:3000/api/level/getAllLevels",
-        );
+        const response = await fetch("http://localhost:3000/api/groups");
+
+        const result = await response.json();
 
         if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
+          throw new Error(
+            `HTTP error ${result.error}! Status: ${response.status}`,
+          );
         }
-        const result = await response.json();
-        setLevels(result.allLevels);
+        setGroups(result.groups);
       } catch (err) {
         console.error("Fetch failed", err);
       }
     };
-    fetchLevels();
-  }, []); */
+    fetchGroups();
+  }, []);
   return (
     <>
       <section className={styles.home}>
         <h1>Hi there</h1>
-        {/*    {levels.map((level) => (
-          <LevelBox level={level}></LevelBox>
-        ))} */}
+        <section className={styles.groups}>
+          {groups.map((group) => (
+            <GroupBox group={group} key={group.id}></GroupBox>
+          ))}
+        </section>
       </section>
     </>
   );
