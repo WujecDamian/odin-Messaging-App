@@ -35,6 +35,7 @@ const Register = () => {
       setError(error.message || error);
     } finally {
       setLoading(false);
+      window.location.href = "/";
     }
   };
   if (loading) {
