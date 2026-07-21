@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 import { configDotenv } from "dotenv";
 
 const logInUser = async (req, res) => {
-  const { username, password } = req.body;
+  const { username, password } = req.body.bodyData;
   const user = await prisma.user.findUnique({ where: { username } });
   if (!user) {
     res.json({ errorMessage: "There is no user matching given username" });
