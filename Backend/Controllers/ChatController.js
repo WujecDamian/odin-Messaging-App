@@ -3,10 +3,11 @@ import { prisma } from "../../lib/prisma.js";
 
 const getAllUserChats = async (req, res) => {
   //get
-  const user = req.user;
+  const userId = Number(req.user.userId);
+
   const chats = await prisma.messages.findMany({
     where: {
-      OR: [{ senderId: Number(user.id) }, { receiverId: Number(user.id) }],
+      OR: [{ senderId: Number(userId) }, { receiverId: Number(userId) }],
     },
     orderBy: {
       createdAt: "desc",
@@ -16,4 +17,24 @@ const getAllUserChats = async (req, res) => {
   res.json({ profile });
 };
 
-export { getAllUserChats };
+const getChatByUserIdAndRecipientId = async (req, res) => {
+  const userId = Number(req.user.userId);
+  const recipientId = Number(req.params.recipientId);
+  console.log("userid:", userId);
+  console.log("recipientId:", recipientId);
+
+  const messages = await prisma.messages.findMany({
+    where: {
+      OR: [
+        { senderId: userId, receiverId: recipientId },
+        { senderId: recipientId, receiverId: userId },
+      ],
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+  res.json({ messages });
+};
+
+export { getAllUserChats, getChatByUserIdAndRecipientId };
