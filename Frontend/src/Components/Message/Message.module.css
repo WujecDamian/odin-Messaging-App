@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: center;
   max-width: 500px;
-  margin: 0.5rem auto;
+  margin: 0.7rem auto;
 }
 .message__content__sender {
   padding: 0.5rem 1rem;
@@ -17,7 +17,13 @@
   border-bottom-right-radius: 0;
 }
 .message__content__recipient {
+  padding: 0.5rem 1rem;
+
   margin-right: auto;
-  text-align: right;
-  border: 1px solid white;
+  text-align: left;
+  border: 1.5px solid rgb(255, 255, 255);
+  background-color: rgb(91, 94, 95);
+  color: white;
+  border-radius: 10rem;
+  border-bottom-left-radius: 0;
 }

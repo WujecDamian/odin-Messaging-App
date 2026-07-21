@@ -103,7 +103,7 @@ function Chat() {
         </section>
         <section className={styles.messages}>
           {chat.map((message) => (
-            <Message userId={user.userId} message={message}></Message>
+            <Message userId={user.id} message={message}></Message>
           ))}
         </section>
       </section>
