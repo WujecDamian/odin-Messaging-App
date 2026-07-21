@@ -27,7 +27,8 @@ function Home() {
   return (
     <>
       <section className={styles.home}>
-        <h1>Hi there</h1>
+        <h1>Check out some group!</h1>
+
         <section className={styles.groups}>
           {groups.map((group) => (
             <GroupBox group={group} key={group.id}></GroupBox>
