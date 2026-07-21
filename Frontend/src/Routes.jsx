@@ -4,6 +4,7 @@ import Home from "./pages/Home/Home";
 import RootLayout from "./layouts/RootLayout";
 import Register from "./Pages/Authentication/Register/Register";
 import Login from "./Pages/Authentication/Login/Login";
+import Group from "./Pages/Group/Group";
 
 //https://reactrouter.com/start/modes#data
 const router = createBrowserRouter([
@@ -14,6 +15,7 @@ const router = createBrowserRouter([
       { index: true, Component: Home },
       { path: "/register", Component: Register },
       { path: "/login", Component: Login },
+      { path: "/group/:groupId", Component: Group },
     ],
   },
 ]);
