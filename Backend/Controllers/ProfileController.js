@@ -3,9 +3,13 @@ import { prisma } from "../../lib/prisma.js";
 
 const getProfileById = async (req, res) => {
   const userId = req.params.userId;
-  const profile = await prisma.profile.findUnique({
+  console.log(userId);
+  const profile = await prisma.user.findUnique({
     where: {
       id: Number(userId),
+    },
+    include: {
+      profile: true,
     },
   });
 
@@ -22,7 +26,7 @@ const editProfile = async (req, res) => {
   }
 
   const groups = await prisma.group.update({
-    where: { id: Number(userId) },
+    where: { userId: Number(userId) },
     data: {
       profilePhotoUrl: profilePhotoUrl,
       bannerPhotoUrl: bannerPhotoUrl,
