@@ -17,6 +17,18 @@ const createUser = async (req, res) => {
         username: username,
         password: hashedPassword,
         displayName: displayName,
+        profile: {
+          create: [
+            {
+              bannerPhotoUrl:
+                "https://s.ytimg.com/yts/img/channels/c4/default_banner-vflYp0HrA.jpg",
+            },
+            {
+              profilePhotoUrl:
+                "https://i.pinimg.com/236x/dd/f0/11/ddf0110aa19f445687b737679eec9cb2.jpg",
+            },
+          ],
+        },
       },
     });
     res.status(201).json({ newUser });
