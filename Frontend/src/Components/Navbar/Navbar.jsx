@@ -7,7 +7,7 @@ function Navbar() {
 
   const token = cookies.token;
   const user = cookies.user;
-  if (user !== undefined) {
+  if (user !== "undefined") {
     console.log("User is logged in! ", user);
   }
 
