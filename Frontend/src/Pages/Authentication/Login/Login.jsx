@@ -40,6 +40,7 @@ const Login = () => {
       setError(error.message || error);
     } finally {
       setLoading(false);
+      window.location.href = "/";
     }
   };
   if (loading) {
@@ -52,9 +53,19 @@ const Login = () => {
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor="username">Username</label>
-      <input type="text" name="username" id="username" />
+      <input
+        type="text"
+        name="username"
+        id="username"
+        autoComplete="username"
+      />
       <label htmlFor="password">Password</label>
-      <input type="password" name="password" id="password" />
+      <input
+        type="password"
+        name="password"
+        id="password"
+        autoComplete="password"
+      />
       <input type="submit" value="Login" />
     </form>
   );
