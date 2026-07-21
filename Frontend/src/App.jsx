@@ -5,9 +5,14 @@ import heroImg from "./assets/hero.png";
 import "./App.css";
 import router from "./Routes";
 import { RouterProvider } from "react-router-dom";
+import { CookiesProvider } from "react-cookie";
 
 function App() {
-  return <RouterProvider router={router}></RouterProvider>;
+  return (
+    <CookiesProvider>
+      <RouterProvider router={router}></RouterProvider>
+    </CookiesProvider>
+  );
 }
 
 export default App;
