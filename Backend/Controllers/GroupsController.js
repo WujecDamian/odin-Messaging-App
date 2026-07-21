@@ -13,6 +13,9 @@ const getGroupById = async (req, res) => {
     where: {
       id: Number(groupId),
     },
+    include: {
+      users: true,
+    },
   });
 
   res.json({ group });
