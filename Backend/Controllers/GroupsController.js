@@ -21,4 +21,18 @@ const getGroupById = async (req, res) => {
   res.json({ group });
 };
 
-export { getAllGroups, getGroupById };
+const addUserToGroup = async (req, res) => {
+  const { userId } = req.body.bodyData;
+  const groupId = Number(req.params.groupId);
+
+  await prisma.group.update({
+    where: { id: groupId },
+    data: {
+      users: {
+        connect: { id: userId },
+      },
+    },
+  });
+};
+
+export { getAllGroups, getGroupById, addUserToGroup };

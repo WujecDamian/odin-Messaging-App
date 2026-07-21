@@ -9,4 +9,6 @@ router.get("/", GroupsController.getAllGroups);
 
 router.get("/group/:groupId", GroupsController.getGroupById);
 
+router.post("/group/:groupId", GroupsController.addUserToGroup);
+
 export default router;
